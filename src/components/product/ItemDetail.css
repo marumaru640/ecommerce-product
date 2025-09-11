@@ -1,0 +1,39 @@
+.item-details {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.main-thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-thumbnail img {
+  width: 100%;
+}
+
+.other-thumbnails {
+  display: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .item-details {
+    max-width: 1000px;
+    grid-template-columns: 400px minmax(500px, 550px);
+    padding: 0 4rem;
+    gap: 20px;
+  }
+
+  .thumbnail-container {
+    margin-bottom: 20px;
+  }
+}
