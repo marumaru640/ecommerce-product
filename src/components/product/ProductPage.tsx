@@ -12,8 +12,7 @@ const frontendMentorProduct = {
   title: "Fall Limited Edition Sneakers",
   price: 125.0,
   brand: "Sneaker Company",
-  description:
-    "These low-profile sneakers are your perfect casual wear companion.",
+  description: "These low-profile sneakers are your perfect casual wear companion.",
   discountPercentage: 50,
   thumbnail: productImage,
   images: [thumbnail1, thumbnail2, thumbnail3, thumbnail4],
