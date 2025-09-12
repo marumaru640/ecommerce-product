@@ -25,9 +25,7 @@ export default function LoginComponent() {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label className="login-label">
-          {isLoggedIn ? "Login" : "Sign Up"}
-        </label>
+        <label className="login-label">{isLoggedIn ? "Login" : "Sign Up"}</label>
 
         <div className="username-container">
           <label htmlFor="username" className="username-label">
@@ -71,12 +69,7 @@ export default function LoginComponent() {
         )}
 
         <div className="button-container">
-          <button
-            type="submit"
-            className="signup-button"
-            name="action"
-            value="signup"
-          >
+          <button type="submit" className="signup-button" name="action" value="signup">
             {isLoggedIn ? "Login" : "Sign Up"}
           </button>
         </div>
