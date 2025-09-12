@@ -1,7 +1,7 @@
 ## Deploy
 
 - Preview (PRごと): 生成された Vercel のプレビューURL（PRの Checks に表示）
-- Production (main): TBD → 初回デプロイ後に貼る
+- Production (main): https://ecommerce-product-azure.vercel.app/
 
 ## Environment Variables (Vite)
 
