@@ -20,7 +20,8 @@ export default function SignUpComponent() {
       });
       alert("Sign up successful");
       navigate("/login", { replace: true });
-    } catch (error) {
+    } catch (e) {
+      console.log(e);
       alert("Sign up failed");
     }
   }

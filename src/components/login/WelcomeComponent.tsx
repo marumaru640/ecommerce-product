@@ -9,7 +9,9 @@ export default function WelcomeComponent() {
   async function handleLogout() {
     try {
       await api.post("/api/auth/logout");
-    } catch {}
+    } catch (e) {
+      console.log(e);
+    }
     setAccessToken(null);
     nav("/login", { replace: true });
   }
