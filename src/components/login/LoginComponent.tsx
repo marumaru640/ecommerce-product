@@ -1,43 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginComponent.css";
+import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { api } from "../../config/api";
 
 export default function LoginComponent() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { setAccessToken } = useAuth();
   const navigate = useNavigate();
 
-  function handleLogin() {
-    setIsLoggedIn((prevMode) => !prevMode);
-  }
-
-  function handleSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    const loginSuccessful = true;
+    const response = await api.post("/api/auth/login", {
+      email,
+      password,
+    });
 
-    if (loginSuccessful) {
-      navigate("/welcome");
-    }
+    const { accessToken } = response.data as { accessToken: string };
+    setAccessToken(accessToken);
+    navigate("/welcome", { replace: true });
   }
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label className="login-label">{isLoggedIn ? "Login" : "Sign Up"}</label>
+      <form className="login-form" onSubmit={onSubmit}>
+        <label className="login-label">Login</label>
 
-        <div className="username-container">
-          <label htmlFor="username" className="username-label">
-            Username
+        <div className="email-container">
+          <label htmlFor="email" className="email-label">
+            Email
           </label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            name="username"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            name="email"
           />
         </div>
         <div className="password-container">
@@ -54,33 +56,20 @@ export default function LoginComponent() {
           />
         </div>
 
-        {!isLoggedIn && (
-          <div className="password-container">
-            <label htmlFor="confirm-password" className="password-label">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-            />
-          </div>
-        )}
-
         <div className="button-container">
           <button type="submit" className="signup-button" name="action" value="signup">
-            {isLoggedIn ? "Login" : "Sign Up"}
+            Login
           </button>
         </div>
       </form>
 
       <div>
         <p className="toggle-text">
-          {isLoggedIn ? "Don't have an account?" : "Already have an account?"}
-          <a className="link-toggle" onClick={handleLogin}>
-            {isLoggedIn ? "Sign Up" : "Login"}
-          </a>
+          Don't have an account?
+          <Link to="/signup" className="toggle-link">
+            {" "}
+            Sign Up
+          </Link>
         </p>
       </div>
     </div>
