@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { api } from "../../hooks/useAuth";
 import "./MainLayout.css";
+import { api } from "../../config/api";
 
 export default function MainLayout() {
   const [status, setStatus] = useState("Checking...");
